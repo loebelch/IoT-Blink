@@ -94,7 +94,7 @@ http://thejackalofjavascript.com/raspberry-pi-node-js-led-emit-morse-code/
 7. Let's use the blockchain now. 
 
         7.1 Assuming the geth is completed syncing lets stop the process and restart with rpc.
-            './geth --rpc console'
+            './geth --testnet --syncmode=light --verbosity 4 --datadir "/wwws/geth/data" --rpcapi "db,eth,net,web3,personal" console 2>> /wwws/geth/eth.log'
     
         7.2 Run ethtest.js in a separate terminal instance (put that in your blink dir)
             'sudo node ethtest.js'
