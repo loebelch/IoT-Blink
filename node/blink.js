@@ -8,7 +8,7 @@ var web3 = new Web3();
 var Gpio = require('onoff').Gpio;
 
 // set the pin for the LED light
-var led = new Gpio(18,'out');
+var led = new Gpio(17,'out');
 
 //our interval object for some blinking later...
 var iv; 
@@ -25,7 +25,8 @@ console.log(web3.version.node);
 
 
 // test to see if a local coinbase is running ... we'll need this account to interact with a contract.
-var coinbase = web3.eth.coinbase;
+//var coinbase = web3.eth.coinbase;
+var coinbase = "0xff092537fec29579b330610f6b9b0b894ce4f1cc";
 
 // if default wallet/account isn't set - this won't have a value.  needed to interact with a contract.
 console.log(coinbase);
@@ -46,7 +47,7 @@ var ABI = JSON.parse(ABIString);
 // var ABI = JSON.parse('[{ "constant": false, "inputs": [{ "na...');
 
 // what contract are we going to interact with? (the one below is for Ropsten)
-var ContractAddress = '0x50357b4B2af1b3512D3e7C05D9C8c61ef6763149';
+var ContractAddress = '0xb661FE26251ba1C8e79C575451080e3cC5b04f69';
 
 // Set the local node default account in order to interact with the contract 
 // (can't interact with a contract if it doesn't know 'who' it is interacting with)
@@ -76,7 +77,7 @@ var event = blinker.ItBlinks( {}, function(error, result) {
 	setTimeout(function() {
 		    clearInterval(iv); // Stop blinking
 		    led.writeSync(0); //Turn LED off
-	}, 10000);
+	}, result.args.data * 1000);
 
 
   }
